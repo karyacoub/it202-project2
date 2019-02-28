@@ -7,6 +7,7 @@
   <title>Graffiti Removal Request Finder</title>
   <link rel='manifest' href='./manifest.json'>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style src="style.css"></style>
 </head>
 
 <body>
@@ -31,6 +32,33 @@
     </div>
   </nav>
 
+  <div class="content" id="search">
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class=display-4>Search</h1>
+        <div class="input-group">
+          <input type="text" id="ward-number" class="form-control">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Open</a>
+              <a class="dropdown-item" href="#">Closed</a>
+            </div>
+          </div>
+          </div>
+      </div>
+    </div>
+      
+  </div>
+
+  <div class="content" id="map">
+      
+  </div>
+
+  <div class="content" id="list">
+      
+  </div>
+
   <!--bottom navbar-->
   <nav class="navbar fixed-bottom navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#"></a>
@@ -46,34 +74,9 @@
       </div>
     </nav>
 
-    <div class="content" id="search">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col">
-              <div class="input-group input-group-lg mt-3">
-                  <input type="text" class="form-control" placeholder="Ward number..."/>
-              </div>
-              <div class="input-group input-group-lg mt-3">
-                  <input type="text" class="form-control" placeholder="Status..."/>
-              </div>
-              <div class="mt-3">
-                  <button type="button" class="btn btn-dark btn-lg">Search</button>
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="content" id="map">
-        
-    </div>
-
-    <div class="content" id="list">
-        
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script>
         // register the service worker for offline use
