@@ -51,7 +51,7 @@
       
   </div>
 
-  <div class="content" id="map">
+  <div class="content" id="map" on>
     <div id="map-div" style="height: 500px; width: 100%">
 
     </div>
@@ -97,6 +97,9 @@
               var target = $(this).attr("href");
               $(target).show();
             });
+
+            
+            $('a[href="#search"]').trigger('click'); // map displays on incorrect page otherwise
         });
     </script>
 
@@ -109,6 +112,6 @@
         }
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJzY67aVLVTPEJL4SdanlSZyQa6k0OMmg&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv7JkrSp-QFXIMUVnudICV6XWKLD5a8AY&callback=initMap" async defer></script>
   </body>
 </html>
