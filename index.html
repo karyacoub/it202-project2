@@ -41,8 +41,8 @@
           <div class="input-group-append">
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Open</a>
-              <a class="dropdown-item" href="#">Closed</a>
+              <a class="dropdown-item" href="#map">Open</a>
+              <a class="dropdown-item" href="#map">Closed</a>
             </div>
           </div>
           </div>
@@ -52,8 +52,11 @@
   </div>
 
   <div class="content" id="map">
-      
+    <div id="map-div" style="height: 500px; width: 100%">
+
+    </div>
   </div>
+  <script src="map.js"></script>
 
   <div class="content" id="list">
       
@@ -89,10 +92,10 @@
             $(".content").hide();
             }
 
-            $(".nav-link").on("click", function(){
-            hideScreens();
-            var target = $(this).attr("href");
-            $(target).show();
+            $(".nav-link, .dropdown-item").on("click", function(){
+              hideScreens();
+              var target = $(this).attr("href");
+              $(target).show();
             });
         });
     </script>
@@ -105,5 +108,7 @@
                    .then(function() { console.log("Service Worker Registered"); });
         }
     </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJzY67aVLVTPEJL4SdanlSZyQa6k0OMmg&callback=initMap" async defer></script>
   </body>
 </html>
