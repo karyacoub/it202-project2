@@ -34,7 +34,17 @@ function getDataSet(status)
             $.each(response, function(i, v) {
                 var coordinates = { lat: parseFloat(v.latitude), lng: parseFloat(v.longitude) };
 
-                generateMarker(coordinates, v.street_address, v.status);
+                var address = v.street_address;
+                var currentStatus = v.status;
+                var serviceRequestNum = v.service_request_number;
+                var location = v.where_is_the_graffiti_located_;
+                var surfaceType = v.what_type_of_surface_is_the_graffiti_on_;
+                var creationDate = v.creation_date;
+                var completionDate = (v.completion_date ? v.completion_date : "N/A");
+
+                var marker = generateMarker(coordinates, address, currentStatus);
+
+                generateInfoWindow(marker, address, currentStatus, serviceRequestNum, location, surfaceType, creationDate, completionDate);
             });
         }
     });
@@ -59,6 +69,33 @@ function generateMarker(coordinates, address, status)
     markers.push(marker);
 
     marker.setMap(map);
+
+    return marker;
+}
+
+function generateInfoWindow(marker, address, status, serviceRequestNum, location, surfaceType, creationDate, completionDate)
+{
+    var contentString = '<div>'
+                      +    '<h5><b>' + address + '</b> (' + status + ')</h5>'
+                      +    '<h6>Service Request #' + serviceRequestNum + '</h6>'
+                      +    '<p>' + location + '</p>'
+                      +    '<p><b>Surface type: </b>' + surfaceType + '</p>'
+                      +    '<p><b>Created on: </b>' + creationDate + '</p>'
+                      +    '<p><b>Completed on: </b>' + completionDate + '</p>'
+                      + '</div>';
+
+    var infoWindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+    marker.addListener('click', function() {
+        infoWindow.open(map, marker);
+    });
+}
+
+function generateCard()
+{
+
 }
 
 function clearMarkers()
@@ -69,9 +106,4 @@ function clearMarkers()
 
     // clear out array
     markers.length = 0;
-}
-
-function generateCard()
-{
-
 }
