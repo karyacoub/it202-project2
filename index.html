@@ -41,9 +41,9 @@
           <div class="input-group-append">
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#map">Open</a>
-              <a class="dropdown-item" href="#map">Completed</a>
-              <a class="dropdown-item" href="#map">Both</a>
+              <a class="dropdown-item" href="#list">Open</a>
+              <a class="dropdown-item" href="#list">Completed</a>
+              <a class="dropdown-item" href="#list">Both</a>
             </div>
           </div>
           </div>
@@ -60,7 +60,9 @@
   <script src="map.js"></script>
 
   <div class="content" id="list">
-      
+      <div class="container" id="cards-list">
+
+      </div>
   </div>
 
   <div class="content" id="about">
@@ -107,7 +109,6 @@
                 getDataSet(status);
               }
             });
-
             
             $('a[href="#search"]').trigger('click'); // map displays on incorrect page otherwise
         });
