@@ -2,8 +2,8 @@ var markers = [];
 var cardTemplate = $('.card').clone();
 var icons = 
     {
-        open: 'https://cdn0.iconfinder.com/data/icons/basic-ui-elements-colored/700/010_x-3-512.png',
-        completed: 'https://img.icons8.com/cotton/2x/checkmark.png'
+        open: 'open.png',
+        completed: 'completed.png'
     };
 
 function getDataSet(status)
