@@ -19,18 +19,20 @@ function getDataSet(status)
     // add necessary parameters to url
     if(wardNumber)
     {
-        url = url + '&ward=' + wardNumber;
+        // check if ward number is valid
+        if(wardNumber <= 0 || wardNumber > 50)
+        {
+            generateInvalidWardNumber();
+            return;
+        }
+        else
+        {
+            url = url + '&ward=' + wardNumber;
+        }
     }
     if(!(status ==='Both'))
     {
         url = url + '&status=' + status;
-    }
-
-    // check if ward number is valid
-    if(wardNumber <= 0 || wardNumber > 50)
-    {
-        generateInvalidWardNumber();
-        return;
     }
 
     $.get(url, function(response) {
