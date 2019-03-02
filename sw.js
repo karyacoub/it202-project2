@@ -24,7 +24,9 @@ self.addEventListener('install', e => {
     caches.open(cacheName).then(cache => {
       return cache.addAll([
         `./`,
-        `./index.html`
+        `./index.html`,
+        'assets/icons/open.png',
+        'assets/icons/completed.png'
       ])
       .then(() => self.skipWaiting());
     })
