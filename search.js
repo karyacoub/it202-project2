@@ -1,4 +1,9 @@
 var markers = [];
+var icons = 
+    {
+        open: 'https://cdn0.iconfinder.com/data/icons/basic-ui-elements-colored/700/010_x-3-512.png',
+        completed: 'https://img.icons8.com/cotton/2x/checkmark.png'
+    };
 
 function getDataSet(status)
 {
@@ -12,9 +17,9 @@ function getDataSet(status)
     // add necessary parameters to url
     if(wardNumber)
     {
-        url = url + '&ward=' + wardNumber + '&status=' + status;
+        url = url + '&ward=' + wardNumber;
     }
-    else
+    if(!(status ==='Both'))
     {
         url = url + '&status=' + status;
     }
@@ -29,17 +34,25 @@ function getDataSet(status)
             $.each(response, function(i, v) {
                 var coordinates = { lat: parseFloat(v.latitude), lng: parseFloat(v.longitude) };
 
-                generateMarker(coordinates, v.street_address);
+                generateMarker(coordinates, v.street_address, v.status);
             });
         }
     });
 }
 
-function generateMarker(coordinates, address)
+function generateMarker(coordinates, address, status)
 {
+    var iconImage = (status === 'Open' ? icons.open : icons.completed);
+
     var marker = new google.maps.Marker({
         position: coordinates,
-        title: address
+        title: address,
+        icon: 
+        {
+            size: new google.maps.Size(25, 25),
+            scaledSize: new google.maps.Size(25, 25),
+            url: iconImage
+        }
     });
 
     // add marker to array so that they can be cleared when necessary
