@@ -2,8 +2,8 @@ var markers = [];
 var cardTemplate = $('.card').clone();
 var icons = 
     {
-        open: 'open.png',
-        completed: 'completed.png'
+        open: 'assets/icons/open.png',
+        completed: 'assets/icons/completed.png'
     };
 
 function getDataSet(status)
