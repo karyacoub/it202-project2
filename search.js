@@ -73,10 +73,5 @@ function clearMarkers()
 
 function generateCard()
 {
-    
-}
-
-function clearCards()
-{
 
 }
