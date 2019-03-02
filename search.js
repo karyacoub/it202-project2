@@ -1,4 +1,5 @@
 var markers = [];
+var cardTemplate = $('.card').clone();
 var icons = 
     {
         open: 'https://cdn0.iconfinder.com/data/icons/basic-ui-elements-colored/700/010_x-3-512.png',
@@ -9,6 +10,7 @@ function getDataSet(status)
 {
     // clear out current markers and cards
     clearMarkers();
+    clearCards();
 
     var url = "https://data.cityofchicago.org/resource/cdmx-wzbz.json?$limit=5";
 
@@ -45,6 +47,7 @@ function getDataSet(status)
                 var marker = generateMarker(coordinates, address, currentStatus);
 
                 generateInfoWindow(marker, address, currentStatus, serviceRequestNum, location, surfaceType, creationDate, completionDate);
+                generateCard(address, currentStatus, serviceRequestNum, location, surfaceType, creationDate, completionDate);
             });
         }
     });
@@ -93,9 +96,18 @@ function generateInfoWindow(marker, address, status, serviceRequestNum, location
     });
 }
 
-function generateCard()
+function generateCard(address, status, serviceRequestNum, location, surfaceType, creationDate, completionDate)
 {
-
+    var card = cardTemplate.clone();
+    card.removeAttr('hidden');
+    card.find('#address-and-status').text(address + ' (' + status + ')');
+    card.find('#service-request-num').text('Service Request #' + serviceRequestNum);
+    card.find('#location').text(location);
+    card.find('#surface-type').text('Surface type: ' + surfaceType);
+    card.find('#creation-date').text('Created on: ' + creationDate);
+    card.find('#completion-date').text('Completed on: ' + completionDate);
+    
+    card.appendTo('#list');
 }
 
 function clearMarkers()
@@ -106,4 +118,9 @@ function clearMarkers()
 
     // clear out array
     markers.length = 0;
+}
+
+function clearCards()
+{
+    $('#list').empty();
 }

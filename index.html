@@ -1,86 +1,80 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Graffiti Removal Request Finder</title>
+    <link rel='manifest' href='./manifest.json'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style src="style.css"></style>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Graffiti Removal Request Finder</title>
-  <link rel='manifest' href='./manifest.json'>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <style src="style.css"></style>
-</head>
-
-<body>
-  <!--top navbar-->
-  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Graffiti Removal Requests</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-              <a class="nav-link" href="#search">Search<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#map">Map</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#list">List</a>
-          </li>
-        </ul>
-    </div>
-  </nav>
-
-  <div class="content" id="search">
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class=display-4>Search</h1>
-        <div class="input-group">
-          <input type="text" id="ward-number" class="form-control">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#map">Open</a>
-              <a class="dropdown-item" href="#map">Completed</a>
-              <a class="dropdown-item" href="#map">Both</a>
-            </div>
-          </div>
-          </div>
-      </div>
-    </div>
-      
-  </div>
-
-  <div class="content" id="map" on>
-    <div id="map-div" style="height: 580px; width: 100%">
-
-    </div>
-  </div>
-  <script src="map.js"></script>
-
-  <div class="content" id="list">
-      
-  </div>
-
-  <div class="content" id="about">
-    
-  </div>
-
-  <!--bottom navbar-->
-  <nav class="navbar fixed-bottom navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#aboutNavbarNav" aria-controls="aboutNavbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <body>
+    <!--top navbar-->
+    <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Graffiti Removal Requests</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="aboutNavbarNav">
+      <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#about">About...<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#search">Search<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#map">Map</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#list">List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#about">About</a>
             </li>
           </ul>
       </div>
     </nav>
+
+    <div class="content" id="search">
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class=display-4>Search</h1>
+          <div class="input-group">
+            <input type="text" id="ward-number" class="form-control">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#list">Open</a>
+                <a class="dropdown-item" href="#list">Completed</a>
+                <a class="dropdown-item" href="#list">Both</a>
+              </div>
+            </div>
+            </div>
+        </div>
+      </div>
+        
+    </div>
+
+    <div class="content" id="map" on>
+      <div id="map-div" style="height: 630px; width: 100%"></div>
+    </div>
+    <script src="map.js"></script>
+
+    <div class="content" id="list">
+      <div class="card" id="card" style="width: 26rem;" hidden>
+        <div class="card-body">
+          <h5 class="card-title" id="address-and-status"></h5>
+          <h6 class="card-subtitle mb-2 text-muted" id="service-request-num"></h6>
+          <p class="card-text" id="location"></p>
+          <p class="card-text" id="surface-type"></p>
+          <p class="card-text" id="creation-date"></p>
+          <p class="card-text" id="completion-date"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content" id="about">
+      
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -117,8 +111,8 @@
         // register the service worker for offline use
         if('serviceWorker' in navigator) {
           navigator.serviceWorker
-                   .register('./sw.js')
-                   .then(function() { console.log("Service Worker Registered"); });
+                    .register('./sw.js')
+                    .then(function() { console.log("Service Worker Registered"); });
         }
     </script>
 
