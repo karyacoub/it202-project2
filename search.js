@@ -26,6 +26,13 @@ function getDataSet(status)
         url = url + '&status=' + status;
     }
 
+    // check if ward number is valid
+    if(wardNumber <= 0 || wardNumber > 50)
+    {
+        generateInvalidWardNumber();
+        return;
+    }
+
     $.get(url, function(response) {
         if(response.length > 0)
         {
@@ -44,13 +51,17 @@ function getDataSet(status)
                 var creationDate = v.creation_date;
                 var completionDate = (v.completion_date ? v.completion_date : "N/A");
 
-                var marker = generateMarker(coordinates, address, currentStatus);
-
-                generateInfoWindow(marker, address, currentStatus, serviceRequestNum, location, surfaceType, creationDate, completionDate);
-                generateCard(address, currentStatus, serviceRequestNum, location, surfaceType, creationDate, completionDate);
+                generateUIElements(coordinates, address, currentStatus, serviceRequestNum, location, surfaceType, creationDate, completionDate);
             });
         }
     });
+}
+
+function generateUIElements(coordinates, address, currentStatus, serviceRequestNum, location, surfaceType, creationDate, completionDate)
+{
+    var marker = generateMarker(coordinates, address, currentStatus);
+    generateInfoWindow(marker, address, currentStatus, serviceRequestNum, location, surfaceType, creationDate, completionDate);
+    generateCard(address, currentStatus, serviceRequestNum, location, surfaceType, creationDate, completionDate);
 }
 
 function generateMarker(coordinates, address, status)
@@ -108,6 +119,25 @@ function generateCard(address, status, serviceRequestNum, location, surfaceType,
     card.find('#completion-date').text('Completed on: ' + completionDate);
     
     card.appendTo('#list');
+}
+
+function generateInvalidWardNumber()
+{
+    var containerDiv = $('<div>');
+    var invalidHeader = $('<h1>');
+    var invalidSubtitle = $('<p>');
+
+    containerDiv.addClass('container');
+    invalidHeader.addClass('display-4');
+    invalidSubtitle.addClass('lead');
+    
+    invalidHeader.text('Invalid ward number');
+    invalidSubtitle.text('Please enter a number from 1 to 50.');
+
+    containerDiv.append(invalidHeader);
+    containerDiv.append(invalidSubtitle);
+
+    $('#list').append(containerDiv);
 }
 
 function clearMarkers()
