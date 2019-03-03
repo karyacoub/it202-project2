@@ -22,7 +22,10 @@ function getDataSet(status)
         // check if ward number is valid
         if(wardNumber <= 0 || wardNumber > 50)
         {
-            generateInvalidWardNumber();
+            var invalidHeader = 'Invalid ward number'
+            var invalidSubtitle = 'Please enter a number from 1 to 50.'
+
+            generateMessageInListPage(invalidHeader, invalidSubtitle);
             return;
         }
         else
@@ -36,6 +39,7 @@ function getDataSet(status)
     }
 
     $.get(url, function(response) {
+        // check if any results exist
         if(response.length > 0)
         {
             // change default center to something closer to results
@@ -55,6 +59,13 @@ function getDataSet(status)
 
                 generateUIElements(coordinates, address, currentStatus, serviceRequestNum, location, surfaceType, creationDate, completionDate);
             });
+        }
+        else
+        {
+            var invalidHeader = 'No results found'
+            var invalidSubtitle = 'Try a different search query.'
+
+            generateMessageInListPage(invalidHeader, invalidSubtitle);
         }
     });
 }
@@ -123,7 +134,7 @@ function generateCard(address, status, serviceRequestNum, location, surfaceType,
     card.appendTo('#list');
 }
 
-function generateInvalidWardNumber()
+function generateMessageInListPage(header, subtitle)
 {
     var containerDiv = $('<div>');
     var invalidHeader = $('<h1>');
@@ -133,8 +144,8 @@ function generateInvalidWardNumber()
     invalidHeader.addClass('display-4');
     invalidSubtitle.addClass('lead');
     
-    invalidHeader.text('Invalid ward number');
-    invalidSubtitle.text('Please enter a number from 1 to 50.');
+    invalidHeader.text(header);
+    invalidSubtitle.text(subtitle);
 
     containerDiv.append(invalidHeader);
     containerDiv.append(invalidSubtitle);
