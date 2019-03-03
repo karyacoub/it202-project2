@@ -12,7 +12,7 @@ function getDataSet(status)
     clearMarkers();
     clearCards();
 
-    var url = "https://data.cityofchicago.org/resource/cdmx-wzbz.json?$limit=5";
+    var url = "https://data.cityofchicago.org/resource/cdmx-wzbz.json?";
 
     var wardNumber = $('#ward-number').val();
 
